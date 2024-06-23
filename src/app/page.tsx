@@ -52,7 +52,6 @@ export default function Home() {
         </section>
       );
     }
-
     if (submitted && !loading) {
       const showResult = result;
       const results = {
@@ -71,7 +70,6 @@ export default function Home() {
         </section>
       );
     }
-
     return (
       <section id="cek-khodam" className="flex flex-col gap-5 bg-white bg-opacity-70 rounded-lg p-10">
         <h1 className="text-xl">Cek khodam yang berdiam dalam diri kamu!</h1>
