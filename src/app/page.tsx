@@ -2,10 +2,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
+interface khodamResult{
+  title: string;
+  philosophy: string;
+}
+
 export default function Home() {
     const [name, setName] = useState<string | null>("");
     const [submitted, setSubmitted] = useState<boolean>(false);
-    const [result, setResult] = useState<{ title: string, philosophy: string }[]>([]);
+    const [result, setResult] = useState<khodamResult | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const nameHandler = (event: any) => {
       setName(event.target.value);
@@ -41,7 +46,7 @@ export default function Home() {
     useEffect(() => {
       setName("");
       setSubmitted(false);
-      setResult([]);
+      setResult(null);
       setLoading(false);
     }, []);
 
@@ -52,19 +57,14 @@ export default function Home() {
         </section>
       );
     }
-    if (submitted && !loading) {
-      const showResult = result;
-      const results = {
-        khodam: showResult.title,
-        philosophy: showResult.philosophy
-      };
+    if (submitted && !loading && result) {
       return (
         <section id="cek-khodam" className="flex flex-col gap-5 bg-white bg-opacity-80 rounded-lg p-10">
           <h1 className="text-xl">
-            Khodam yang berada dalam diri <span className="text-green-600">{name}</span> adalah <span>{results.khodam}</span>.
+            Khodam yang berada dalam diri <span className="text-green-600">{name}</span> adalah <span>{result.title}</span>.
           </h1>
           <p>
-            Bermaknakan: {results.philosophy}
+            Bermaknakan: {result.philosophy}
           </p>
           <button onClick={reloadPage}>Cek Ulang</button>
         </section>
