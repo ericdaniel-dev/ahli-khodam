@@ -54,7 +54,7 @@ export default function Home() {
     }
 
     if (submitted && !loading) {
-      const showResult = result[0];
+      const showResult = result;
       const results = {
         khodam: showResult.title,
         philosophy: showResult.philosophy
